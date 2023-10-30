@@ -7,7 +7,7 @@ const port = 4000;
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors({ credentials: true, origin: process.env.CORS_ORIGINS }));
 app.use(express.json());
 
 app.use("/", apiRoutes);
