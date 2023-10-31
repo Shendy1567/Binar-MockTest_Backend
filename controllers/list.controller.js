@@ -84,7 +84,7 @@ module.exports = class ListController {
       if (dueDate) {
         updateFields.dueDate = dueDate;
       }
-      if (completed) {
+      if (completed !== undefined) {
         updateFields.completed = completed;
       }
       console.log(updateFields);
