@@ -20,12 +20,12 @@ module.exports = class AuthControllers {
         pin,
         role: "user",
       });
-      res.status(200).json({
+      return res.status(200).json({
         status: "Success",
         message: "Account Successfully registered",
       });
     } catch (error) {
-      res.status(500).json({
+      return res.status(500).json({
         status: "Error",
         message: error.message,
       });
@@ -68,10 +68,26 @@ module.exports = class AuthControllers {
         .json({
           status: "Success",
           token: token,
-          Message: "Welcome back " + user.firstName,
+          message: "Welcome back " + user.firstName,
         });
     } catch (error) {
-      res.status(500).json({
+      return res.status(500).json({
+        status: "Error",
+        message: error.message,
+      });
+    }
+  }
+
+  async logoutUser(req, res) {
+    try {
+      const token = req.cookies.token;
+      if (!token) return res.sendStatus(204);
+      return res.clearCookie("token").status(200).json({
+        status: "Success",
+        message: "Token successfuly deleted",
+      });
+    } catch (error) {
+      return res.status(500).json({
         status: "Error",
         message: error.message,
       });

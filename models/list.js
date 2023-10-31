@@ -9,15 +9,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       this.belongsTo(models.User, {
-        foreignKey: `user_id`,
+        foreignKey: `userId`,
         onDelete: "CASCADE",
       });
     }
   }
   List.init(
     {
-      user_id: DataTypes.INTEGER,
+      userId: DataTypes.INTEGER,
       list: DataTypes.STRING,
+      dueDate: DataTypes.DATE,
       completed: DataTypes.BOOLEAN,
     },
     {

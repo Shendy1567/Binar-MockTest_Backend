@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      user_id: {
+      userId: {
         type: Sequelize.INTEGER,
         references: {
           model: "Users",
@@ -21,6 +21,9 @@ module.exports = {
       },
       completed: {
         type: Sequelize.BOOLEAN,
+      },
+      dueDate: {
+        type: Sequelize.DATEONLY,
       },
       createdAt: {
         allowNull: false,
