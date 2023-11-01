@@ -4,13 +4,21 @@ const jwt = require("jsonwebtoken");
 module.exports = class AuthControllers {
   async reqisterUser(req, res) {
     const { username, firstName, lastName, email, pin } = req.body;
-
+    const pinStr = pin.toString();
     if (await User.findOne({ where: { email } })) {
       return res.status(400).json({
         status: "Error",
         message: "Email has already registered",
       });
     }
+
+    if (pinStr.length !== 6) {
+      return res.status(400).json({
+        status: "Error",
+        message: "Pin must be exactly 6 characters long",
+      });
+    }
+
     try {
       await User.create({
         username,
@@ -20,6 +28,7 @@ module.exports = class AuthControllers {
         pin,
         role: "user",
       });
+
       return res.status(200).json({
         status: "Success",
         message: "Account Successfully registered",
