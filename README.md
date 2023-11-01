@@ -13,6 +13,8 @@
 - Open terminal / CMD and direct to this project directory
 - Copy `.env.example` and rename it to `.env` open the file and adjust the environment variables
 - Run `npm install` to install all dependencies
+- Run `npx sequelize-cli db:create` to create database
+- Run `npx sequelize-cli db:migrate` to create table on the database
 - Run `npm run dev` to start the development server
 
 ## Repository
